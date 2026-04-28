@@ -1,0 +1,203 @@
+---
+- name: Update Codec Syslog Server and Settings
+  hosts: all
+  gather_facts: no
+  connection: local
+  module_defaults: 
+    uri:
+      url: "https://{{inventory_hostname}}/putxml"
+      method: POST
+      user: "{{ codec_user }}"
+      password: "{{ codec_password }}"
+      force_basic_auth: yes
+      validate_certs: no
+      body_format: raw
+      headers: 
+        Content-Type: "text-xml"
+  vars_files:
+    - ~/ansible/vtc-mgmt/vault/vtc_vault.yml
+  
+  vars:
+    codec_user: "{{ user }}"
+    codec_password: "{{ passwd }}"
+    dest_file: ~/ansible/vtc-mgmt/outputs/syslog-output.csv
+    syslog_server: syslog.some.place
+    syslog_port: 5014
+
+  tasks:
+
+    - name: Create CSV with Headers
+      copy:
+        content: "Codec, Install Status"
+        dest: "{{ dest_file }}"
+        force: no
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Set Syslog Server Address
+      uri:
+        body: |
+            <Configuration>
+              <Logging>
+                <External>
+                  <Server>
+                    <Address>"{{ syslog_server }}"</Address>
+                  </Server>
+                </External>
+              </Logging>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: syslog_server_set 
+      delegate_to: localhost
+    
+    - name: Set Syslog Port
+      uri:
+        body: |
+            <Configuration>
+              <Logging>
+                <External>
+                  <Server>
+                    <Port>"{{ syslog_port }}"</Port>
+                  </Server>
+                </External>
+              </Logging>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: syslog_port_set 
+      delegate_to: localhost
+
+    - name: Enable External Logging
+      uri:
+        body: |
+            <Configuration>
+              <Logging>
+                <External>
+                  <Mode>On</Mode>
+                </External>
+              </Logging>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: syslog_ext_mode_set 
+      delegate_to: localhost
+
+    - name: Set Logging Protocol
+      uri:
+        body: |
+            <Configuration>
+              <Logging>
+                <External>
+                  <Protocol>Syslog</Protocol>
+                </External>
+              </Logging>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: syslog_protocol_set 
+      delegate_to: localhost
+      
+    - name: Set TLS verify 
+      uri:
+        body: |
+            <Configuration>
+              <Logging>
+                <External>
+                  <TLSVerify>Off</TLSVerify>
+                </External>
+              </Logging>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: syslog_tls_verify_set 
+      delegate_to: localhost
+
+    - name: Set Audit Logging External
+      uri:
+        body: |
+          <Configuration>
+            <Security>
+              <Audit>
+                <Logging>
+                  <Mode>External</Mode>
+                </Logging>
+              </Audit>
+            </Security>
+          </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: audit_mode_set 
+      delegate_to: localhost
+
+    - name: Set Audit Logging Server Address
+      uri:
+        body: |
+          <Configuration>
+            <Security>
+              <Audit>
+                <Server>
+                  <Address>"{{ syslog_server }}"</Address>
+                </Server>
+              </Audit>
+            </Security>
+          </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: audit_server_set 
+      delegate_to: localhost
+
+
+    - name: Set Audit Logging Server Port
+      uri:
+        body: |
+          <Configuration>
+            <Security>
+              <Audit>
+                <Server>
+                  <Port>"{{ syslog_port }}"</Port>
+                </Server>
+              </Audit>
+            </Security>
+          </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: audit_port_set 
+      delegate_to: localhost
+
+
+    - name: Set Audit Logging Port Assignment
+      uri:
+        body: |
+          <Configuration>
+            <Security>
+              <Audit>
+                <Server>
+                  <PortAssignment>Manual</PortAssignment>
+                </Server>
+              </Audit>
+            </Security>
+          </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+        #timeout: 600 #seconds
+      register: audit_server_set 
+      delegate_to: localhost
+
+      
+    - name: Write results to file
+      lineinfile:
+        path: "{{ dest_file}}"
+        line: "{{ inventory_hostname }}, {{ software_upgrade.status }}"
+        create: yes
+      delegate_to: localhost
+
+
