@@ -1,9 +1,9 @@
 # Project Notes:
 
-##Purpose
+    ## Purpose
     This project exist to make life a bit easier managing a fleet of Cisco Codecs with Ansible to cover gaps left by call manager and other applications.  All of these playbooks are utilizing the http api. 
 
-## Requirements
+    ## Requirements
     - Ansible
     - lxlm
     - Apache2
