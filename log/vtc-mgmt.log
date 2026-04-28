@@ -1,0 +1,327 @@
+2026-04-28 09:08:32,201 p=14678 u=adam n=ansible INFO| PLAY [Get Codec Information] ***************************************************
+2026-04-28 09:08:32,258 p=14678 u=adam n=ansible INFO| TASK [Get Codec Information] ***************************************************
+2026-04-28 09:08:36,572 p=14678 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 09:08:36,583 p=14678 u=adam n=ansible INFO| TASK [Clean result] ************************************************************
+2026-04-28 09:08:37,029 p=14678 u=adam n=ansible INFO| ok: [192.168.20.130]
+2026-04-28 09:08:37,040 p=14678 u=adam n=ansible INFO| TASK [Display Codec Information] ***********************************************
+2026-04-28 09:08:37,114 p=14678 u=adam n=ansible INFO| ok: [192.168.20.130] => {
+    "msg": "RoomOS 11.17.4.0 b12646305a2"
+}
+2026-04-28 09:08:37,118 p=14678 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 09:08:37,119 p=14678 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 09:25:52,359 p=14829 u=adam n=ansible INFO| PLAY [Get Codec Information] ***************************************************
+2026-04-28 09:25:52,416 p=14829 u=adam n=ansible INFO| TASK [Get Codec Information] ***************************************************
+2026-04-28 09:25:56,633 p=14829 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 09:25:56,643 p=14829 u=adam n=ansible INFO| TASK [Clean result] ************************************************************
+2026-04-28 09:25:57,096 p=14829 u=adam n=ansible INFO| ok: [192.168.20.130]
+2026-04-28 09:25:57,105 p=14829 u=adam n=ansible INFO| TASK [Display Codec Information] ***********************************************
+2026-04-28 09:25:57,190 p=14829 u=adam n=ansible INFO| ok: [192.168.20.130] => {
+    "msg": {
+        "Status": {
+            "@apiVersion": "4",
+            "@product": "Cisco Codec",
+            "@version": "ce11.17.4.0.b12646305a2",
+            "SystemUnit": {
+                "BroadcastName": "Adam-Room-Mini",
+                "DeveloperPreview": {
+                    "Mode": "Off"
+                },
+                "Hardware": {
+                    "DRAM": "4",
+                    "HasWifi": "True",
+                    "MainBoard": {
+                        "Revision": "E"
+                    },
+                    "Module": {
+                        "CompatibilityLevel": "0",
+                        "DeviceId": "7fa065b0-47bc-5c15-a701-d19c0bf2cdd4",
+                        "SerialNumber": "FOC2314NM0L"
+                    },
+                    "Monitoring": {
+                        "Temperature": {
+                            "Status": "Normal"
+                        }
+                    },
+                    "UDI": "CS-KIT-MINI V01 FOC2314NM0L"
+                },
+                "LastShutdownReason": "Upgrade",
+                "LastShutdownTime": "2026-04-24T20:13:19Z",
+                "Notifications": {
+                    "Notification": {
+                        "@item": "1",
+                        "@maxOccurrence": "n",
+                        "Text": "OK",
+                        "Type": "SoftwareUpgradeOK"
+                    }
+                },
+                "ProductId": "Cisco Room Kit Mini",
+                "ProductPlatform": "Room Kit Mini",
+                "ProductType": "Cisco Codec",
+                "Software": {
+                    "DisplayName": "RoomOS 11.17.4.0 b12646305a2",
+                    "Name": "s53200",
+                    "OptionKeys": {
+                        "DeveloperPreview": "False",
+                        "Encryption": "True",
+                        "MultiSite": "False",
+                        "RemoteMonitoring": "False"
+                    },
+                    "ReleaseDate": "2024-10-02",
+                    "Version": "ce11.17.4.0.b12646305a2"
+                },
+                "State": {
+                    "NumberOfActiveCalls": "0",
+                    "NumberOfInProgressCalls": "0",
+                    "NumberOfSuspendedCalls": "0",
+                    "Subsystem": {
+                        "Application": "Initialized"
+                    },
+                    "System": "Initialized"
+                },
+                "Uptime": "324684"
+            }
+        }
+    }
+}
+2026-04-28 09:25:57,194 p=14829 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 09:25:57,195 p=14829 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 09:33:16,792 p=14907 u=adam n=ansible INFO| PLAY [Get Codec Information] ***************************************************
+2026-04-28 09:33:16,848 p=14907 u=adam n=ansible INFO| TASK [Get Codec Information] ***************************************************
+2026-04-28 09:33:21,064 p=14907 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 09:33:21,074 p=14907 u=adam n=ansible INFO| TASK [Clean result] ************************************************************
+2026-04-28 09:33:21,524 p=14907 u=adam n=ansible INFO| ok: [192.168.20.130]
+2026-04-28 09:33:21,533 p=14907 u=adam n=ansible INFO| TASK [Display Codec Information] ***********************************************
+2026-04-28 09:33:21,614 p=14907 u=adam n=ansible ERROR| [ERROR]: Task failed: Finalization of task args for 'ansible.builtin.debug' failed: Error while resolving value for 'msg': object of type 'dict' has no attribute 'Module'
+
+Task failed.
+Origin: /home/adam/ansible/vtc-mgmt/playbook/get-info.yml:36:7
+
+34         codec_info: "{{ codec_info_unparsed.content | ansible.utils.from_xml }}"
+35
+36     - name: Display Codec Information
+         ^ column 7
+
+<<< caused by >>>
+
+Finalization of task args for 'ansible.builtin.debug' failed.
+Origin: /home/adam/ansible/vtc-mgmt/playbook/get-info.yml:37:7
+
+35
+36     - name: Display Codec Information
+37       debug:
+         ^ column 7
+
+<<< caused by >>>
+
+Error while resolving value for 'msg'.
+Origin: /home/adam/ansible/vtc-mgmt/playbook/get-info.yml:39:11
+
+37       debug:
+38         msg: 
+39           - "{{ codec_info.Status.SystemUnit.BroadcastName }}"  #.Status.SystemUnit.Software.DisplayName 
+             ^ column 11
+
+<<< caused by >>>
+
+object of type 'dict' has no attribute 'Module'
+Origin: /home/adam/ansible/vtc-mgmt/playbook/get-info.yml:41:13
+
+39           - "{{ codec_info.Status.SystemUnit.BroadcastName }}"  #.Status.SystemUnit.Software.DisplayName 
+40           - "{{ codec_info.Status.SystemUnit.ProductId }}"
+41           - "{{ codec_info.Status.SystemUnit.Module.SerialNumber }}"
+               ^ column 13
+
+
+2026-04-28 09:33:21,617 p=14907 u=adam n=ansible INFO| fatal: [192.168.20.130]: FAILED! => {"msg": "Task failed: Finalization of task args for 'ansible.builtin.debug' failed: Error while resolving value for 'msg': object of type 'dict' has no attribute 'Module'"}
+2026-04-28 09:33:21,620 p=14907 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 09:33:21,621 p=14907 u=adam n=ansible INFO| 192.168.20.130             : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 09:35:00,436 p=14958 u=adam n=ansible INFO| PLAY [Get Codec Information] ***************************************************
+2026-04-28 09:35:00,493 p=14958 u=adam n=ansible INFO| TASK [Get Codec Information] ***************************************************
+2026-04-28 09:35:04,385 p=14958 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 09:35:04,396 p=14958 u=adam n=ansible INFO| TASK [Clean result] ************************************************************
+2026-04-28 09:35:04,846 p=14958 u=adam n=ansible INFO| ok: [192.168.20.130]
+2026-04-28 09:35:04,856 p=14958 u=adam n=ansible INFO| TASK [Display Codec Information] ***********************************************
+2026-04-28 09:35:04,952 p=14958 u=adam n=ansible INFO| ok: [192.168.20.130] => {
+    "msg": [
+        "Adam-Room-Mini",
+        "Cisco Room Kit Mini",
+        "FOC2314NM0L",
+        "RoomOS 11.17.4.0 b12646305a2"
+    ]
+}
+2026-04-28 09:35:04,956 p=14958 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 09:35:04,957 p=14958 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 10:21:35,231 p=15113 u=adam n=ansible INFO| PLAY [Get Codec Information] ***************************************************
+2026-04-28 10:21:35,290 p=15113 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 10:21:41,059 p=15113 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 10:21:41,069 p=15113 u=adam n=ansible INFO| TASK [Get Codec Information] ***************************************************
+2026-04-28 10:21:45,254 p=15113 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 10:21:45,265 p=15113 u=adam n=ansible INFO| TASK [Clean result] ************************************************************
+2026-04-28 10:21:45,714 p=15113 u=adam n=ansible INFO| ok: [192.168.20.130]
+2026-04-28 10:21:45,723 p=15113 u=adam n=ansible INFO| TASK [Display Codec Information] ***********************************************
+2026-04-28 10:21:45,818 p=15113 u=adam n=ansible INFO| ok: [192.168.20.130] => {
+    "msg": [
+        "Adam-Room-Mini",
+        "Cisco Room Kit Mini",
+        "FOC2314NM0L",
+        "RoomOS 11.17.4.0 b12646305a2"
+    ]
+}
+2026-04-28 10:21:45,834 p=15113 u=adam n=ansible INFO| TASK [Write to results to "~/ansible/vtc-mgmt/outputs/codec-info.csv"] *********
+2026-04-28 10:21:48,679 p=15113 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 10:21:48,684 p=15113 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 10:21:48,685 p=15113 u=adam n=ansible INFO| 192.168.20.130             : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 12:32:29,653 p=16673 u=adam n=ansible ERROR| [ERROR]: YAML parsing failed: While parsing a block collection did not find expected '-' indicator.
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:45:5
+
+43       status_code: [200, 201]
+44       return_content: yes
+45     register: software_upgrade
+       ^ column 5
+
+
+2026-04-28 12:33:13,406 p=16677 u=adam n=ansible ERROR| [ERROR]: conflicting action statements: uri, status_code
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 12:34:45,586 p=16680 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 12:34:45,646 p=16680 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 12:34:51,414 p=16680 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 12:34:51,424 p=16680 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 12:35:15,634 p=16680 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 12:35:15,640 p=16680 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 12:35:15,641 p=16680 u=adam n=ansible INFO| 192.168.20.130             : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 12:43:39,065 p=16795 u=adam n=ansible ERROR| [ERROR]: YAML parsing failed: While parsing a block mapping did not find expected key.
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:53:9
+
+51           line: "{{ inventory_hostname }}, {{ software_upgrade }}"
+52           create: yes
+53         delegate_to: localhost
+           ^ column 9
+
+
+2026-04-28 12:44:59,091 p=16798 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 12:44:59,148 p=16798 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 12:45:02,334 p=16798 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 12:45:02,344 p=16798 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 12:45:36,203 p=16798 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200, 201]: Connection failure: The read operation timed out
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 12:45:36,206 p=16798 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "content": "", "elapsed": 30, "msg": "Status code was -1 and not [200, 201]: Connection failure: The read operation timed out", "redirected": false, "status": -1, "url": "https://192.168.20.130/putxml"}
+2026-04-28 12:45:36,211 p=16798 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 12:45:36,211 p=16798 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 12:47:55,990 p=16860 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 12:47:56,046 p=16860 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 12:47:58,913 p=16860 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 12:47:58,922 p=16860 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 12:48:32,803 p=16860 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200, 201]: Connection failure: The read operation timed out
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 12:48:32,806 p=16860 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "content": "", "elapsed": 30, "msg": "Status code was -1 and not [200, 201]: Connection failure: The read operation timed out", "redirected": false, "status": -1, "url": "https://192.168.20.130/putxml"}
+2026-04-28 12:48:32,810 p=16860 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 12:48:32,811 p=16860 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 12:48:46,380 p=16919 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 12:48:46,437 p=16919 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 12:48:49,285 p=16919 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 12:48:49,294 p=16919 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 12:49:23,228 p=16919 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200, 201]: Connection failure: The read operation timed out
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 12:49:23,231 p=16919 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "content": "", "elapsed": 30, "msg": "Status code was -1 and not [200, 201]: Connection failure: The read operation timed out", "redirected": false, "status": -1, "url": "https://192.168.20.130/putxml"}
+2026-04-28 12:49:23,238 p=16919 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 12:49:23,240 p=16919 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 12:59:16,628 p=16991 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 12:59:16,712 p=16991 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 12:59:20,059 p=16991 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 12:59:20,070 p=16991 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 13:04:24,055 p=16991 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200, 201]: Connection failure: The read operation timed out
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 13:04:24,059 p=16991 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "content": "", "elapsed": 300, "msg": "Status code was -1 and not [200, 201]: Connection failure: The read operation timed out", "redirected": false, "status": -1, "url": "https://192.168.20.130/putxml"}
+2026-04-28 13:04:24,065 p=16991 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 13:04:24,067 p=16991 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 13:06:02,290 p=17062 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 13:06:02,347 p=17062 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 13:06:05,263 p=17062 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 13:06:05,273 p=17062 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 13:06:09,040 p=17062 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Unsupported parameters for (ansible.legacy.uri) module: register. Supported parameters include: attributes, body, body_format, ca_path, ciphers, client_cert, client_key, creates, decompress, dest, follow_redirects, force, force_basic_auth, group, headers, http_agent, method, mode, owner, remote_src, removes, return_content, selevel, serole, setype, seuser, src, status_code, timeout, unix_socket, unredirected_headers, unsafe_writes, url, url_password, url_username, use_gssapi, use_netrc, use_proxy, validate_certs (attr, password, user).
+Origin: /home/adam/ansible/vtc-mgmt/playbook/codec-update.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 13:06:09,043 p=17062 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.legacy.uri) module: register. Supported parameters include: attributes, body, body_format, ca_path, ciphers, client_cert, client_key, creates, decompress, dest, follow_redirects, force, force_basic_auth, group, headers, http_agent, method, mode, owner, remote_src, removes, return_content, selevel, serole, setype, seuser, src, status_code, timeout, unix_socket, unredirected_headers, unsafe_writes, url, url_password, url_username, use_gssapi, use_netrc, use_proxy, validate_certs (attr, password, user)."}
+2026-04-28 13:06:09,047 p=17062 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 13:06:09,048 p=17062 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 13:07:33,151 p=17130 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 13:07:33,208 p=17130 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 13:07:36,122 p=17130 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 13:07:36,133 p=17130 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 13:08:59,984 p=17130 u=adam n=ansible ERROR| [ERROR]: User interrupted execution
+
+2026-04-28 13:45:06,933 p=17337 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 13:45:06,990 p=17337 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 13:45:09,837 p=17337 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 13:45:09,847 p=17337 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 13:55:13,748 p=17337 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200, 201]: Connection failure: The read operation timed out
+Origin: /home/adam/ansible/vtc-mgmt/playbook/rkm-upgrade-11_24.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 13:55:13,751 p=17337 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "content": "", "elapsed": 600, "msg": "Status code was -1 and not [200, 201]: Connection failure: The read operation timed out", "redirected": false, "status": -1, "url": "https://192.168.20.130/putxml"}
+2026-04-28 13:55:13,755 p=17337 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 13:55:13,756 p=17337 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 14:04:54,150 p=17454 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 14:04:54,207 p=17454 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 14:04:57,059 p=17454 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 14:04:57,068 p=17454 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 14:09:38,995 p=17454 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 14:09:39,067 p=17454 u=adam n=ansible INFO| TASK [Write results to file] ***************************************************
+2026-04-28 14:09:42,491 p=17454 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 14:09:42,499 p=17454 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 14:09:42,500 p=17454 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 14:15:12,128 p=17605 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 14:15:12,207 p=17605 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 14:15:18,093 p=17605 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 14:15:18,105 p=17605 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 14:19:43,743 p=17605 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 14:19:43,817 p=17605 u=adam n=ansible INFO| TASK [Write results to file] ***************************************************
+2026-04-28 14:19:47,210 p=17605 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 14:19:47,218 p=17605 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 14:19:47,221 p=17605 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

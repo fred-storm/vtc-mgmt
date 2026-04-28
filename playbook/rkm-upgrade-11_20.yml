@@ -1,0 +1,56 @@
+---
+- name: Update Codec Software
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars_files:
+    - ~/ansible/vtc-mgmt/vault/vtc_vault.yml
+  
+  vars:
+    codec_user: "{{ user }}"
+    codec_password: "{{ passwd }}"
+    dest_file: ~/ansible/vtc-mgmt/outputs/codec-update.csv
+
+  tasks:
+
+    - name: Create CSV with Headers
+      copy:
+        content: "Codec, Install Status"
+        dest: "{{ dest_file }}"
+        force: no
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Download new software version
+      uri:
+        url: "https://{{inventory_hostname}}/putxml"
+        method: POST
+        user: "{{ codec_user }}"
+        password: "{{ codec_password }}"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: raw
+        headers: 
+          Content-Type: "text-xml"
+        body: |
+          <Command>
+            <SystemUnit>
+              <SoftwareUpgrade>
+                <URL>http://192.168.20.207/vtc/firmware/cmterm-s53200ce11_20_2_3.k4.cop.sha512</URL>
+              </SoftwareUpgrade>
+            </SystemUnit>
+          </Command>
+        status_code: [200, 201]
+        return_content: yes
+        timeout: 300 #seconds
+      register: software_upgrade
+      delegate_to: localhost
+    
+    - name: Write results to file
+      lineinfile:
+        path: "{{ dest_file}}"
+        line: "{{ inventory_hostname }}, {{ software_upgrade.status }}"
+        create: yes
+      delegate_to: localhost
+
+
