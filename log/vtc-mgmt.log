@@ -325,3 +325,53 @@ Origin: /home/adam/ansible/vtc-mgmt/playbook/rkm-upgrade-11_24.yml:24:7
 2026-04-28 14:19:47,210 p=17605 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
 2026-04-28 14:19:47,218 p=17605 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
 2026-04-28 14:19:47,221 p=17605 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-04-28 15:42:43,445 p=18207 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 15:42:43,532 p=18207 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 15:42:49,353 p=18207 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 15:42:49,364 p=18207 u=adam n=ansible INFO| TASK [Download new software version] *******************************************
+2026-04-28 15:42:53,293 p=18207 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200, 201]: An unknown error occurred: can't concat str to bytes
+Origin: /home/adam/ansible/vtc-mgmt/playbook/test-xml.yml:24:7
+
+22       run_once: yes
+23
+24     - name: Download new software version
+         ^ column 7
+
+
+2026-04-28 15:42:53,296 p=18207 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"changed": false, "content": "", "elapsed": 0, "msg": "Status code was -1 and not [200, 201]: An unknown error occurred: can't concat str to bytes", "redirected": false, "status": -1, "url": "https://192.168.20.130/putxml"}
+2026-04-28 15:42:53,301 p=18207 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 15:42:53,302 p=18207 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 16:02:55,558 p=18290 u=adam n=ansible ERROR| [ERROR]: YAML parsing failed: Mapping values are not allowed in this context.
+Origin: /home/adam/ansible/vtc-mgmt/playbook/test-xml.yml:14:12
+
+12     dest_file: ~/ansible/vtc-mgmt/outputs/test-output.csv
+13     codec_defaults: $codec_defaults
+14         url: "https://{{inventory_hostname}}/putxml"
+              ^ column 12
+
+
+2026-04-28 16:06:24,396 p=18295 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 16:06:24,448 p=18295 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 16:06:27,391 p=18295 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 16:06:27,400 p=18295 u=adam n=ansible INFO| TASK [Update defaults volumes] *************************************************
+2026-04-28 16:06:31,365 p=18295 u=adam n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was 400 and not [200, 201]: HTTP Error 400: Bad Request
+Origin: /home/adam/ansible/vtc-mgmt/playbook/test-xml.yml:35:7
+
+33       run_once: yes
+34
+35     - name: Update defaults volumes
+         ^ column 7
+
+
+2026-04-28 16:06:31,369 p=18295 u=adam n=ansible INFO| fatal: [192.168.20.130 -> localhost]: FAILED! => {"cache_control": "no-store, max-age=0", "changed": false, "connection": "close", "content": "XML syntax error:\nOpening and ending tag mismatch: DefualtVolume line 3 and DefaultVolume, line 3, column 38 (<string>, line 3)", "content_length": "127", "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; img-src 'self' data: blob:", "content_type": "text/plain; charset=UTF-8", "date": "Tue, 28 Apr 2026 21:06:31 GMT", "elapsed": 0, "msg": "Status code was 400 and not [200, 201]: HTTP Error 400: Bad Request", "redirected": false, "referrer_policy": "same-origin", "server": "nginx", "status": 400, "url": "https://192.168.20.130/putxml", "x_content_type_options": "nosniff", "x_frame_options": "DENY", "x_xss_protection": "1; mode=block"}
+2026-04-28 16:06:31,372 p=18295 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 16:06:31,373 p=18295 u=adam n=ansible INFO| 192.168.20.130             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-04-28 16:07:39,712 p=18354 u=adam n=ansible INFO| PLAY [Update Codec Software] ***************************************************
+2026-04-28 16:07:39,768 p=18354 u=adam n=ansible INFO| TASK [Create CSV with Headers] *************************************************
+2026-04-28 16:07:42,421 p=18354 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 16:07:42,429 p=18354 u=adam n=ansible INFO| TASK [Update defaults volumes] *************************************************
+2026-04-28 16:07:46,232 p=18354 u=adam n=ansible INFO| ok: [192.168.20.130 -> localhost]
+2026-04-28 16:07:46,241 p=18354 u=adam n=ansible INFO| TASK [Write results to file] ***************************************************
+2026-04-28 16:07:49,034 p=18354 u=adam n=ansible INFO| changed: [192.168.20.130 -> localhost]
+2026-04-28 16:07:49,039 p=18354 u=adam n=ansible INFO| PLAY RECAP *********************************************************************
+2026-04-28 16:07:49,040 p=18354 u=adam n=ansible INFO| 192.168.20.130             : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
