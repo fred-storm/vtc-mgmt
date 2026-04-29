@@ -31,6 +31,7 @@ Use the moduel_defaults block at the playbook definition to avoid laying out the
 There are step upgrades needed when updating codecs from CE 9.x versions. The two step upgrades are:
 - CE 9.15.6
 - CE 10.19.5
+
 If you are coming from behind any of these step upgrades you **MUST** step otherwise the codec will not accept the new file on upload.
 
 ## Info Needed for comparison
