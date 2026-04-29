@@ -32,13 +32,6 @@
       register: codec_info_unparsed
       delegate_to: localhost
 
-      # - name: Parse Codec Information
-      #community.general.xml:
-       # xmlstring: "{{ codec_info_unparsed.content }}"
-        #xpath: /Status/SystemUnit/Software/Displayname
-        #content: text
-      #register: parsed_codec_info
-
     - name: Clean result
       set_fact:
         codec_info: "{{ codec_info_unparsed.content | ansible.utils.from_xml }}"

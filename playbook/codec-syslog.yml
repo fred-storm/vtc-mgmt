@@ -28,7 +28,7 @@
 
     - name: Create CSV with Headers
       copy:
-        content: "Codec, Install Status"
+        content: "Codec, Server Address, Server Port, External Logging Mode, Protocol, TLS Verify, Audit Logging Mode, Audit Server Address, Audit Server Port
         dest: "{{ dest_file }}"
         force: no
       delegate_to: localhost
@@ -196,7 +196,7 @@
     - name: Write results to file
       lineinfile:
         path: "{{ dest_file}}"
-        line: "{{ inventory_hostname }}, {{ software_upgrade.status }}"
+        line: "{{ inventory_hostname }}, {{ syslog_server_set.status }}, {{ syslog_port_set.status }}, {{ syslog_ext_mode_set.status }}, {{ syslog_protocol_set.status }}, {{ syslog_tls_verify_set.status }}, {{ audit_mode_set.status }}, {{ audit_server_set.status }}, {{ audit_port_set.status }}"
         create: yes
       delegate_to: localhost
 
