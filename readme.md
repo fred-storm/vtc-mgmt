@@ -31,8 +31,8 @@ Use the moduel_defaults block at the playbook definition to avoid laying out the
 
 
 ## Info Needed for comparison
--[ ] At RoomOs 11.20.2 Bind DN and Bind PW now exist in ldap configuration. Does this exist in lower versions? When introduced?
--[ ] Do codecs older than 11.17 return the following feilds in /Status/SystemUnit?
+- [ ] At RoomOs 11.20.2 Bind DN and Bind PW now exist in ldap configuration. Does this exist in lower versions? When introduced?
+- [ ] Do codecs older than 11.17 return the following feilds in /Status/SystemUnit?
     - Product ID
     - Software.DisplayName
     - BroadcastName
