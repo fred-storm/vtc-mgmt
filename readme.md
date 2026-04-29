@@ -27,3 +27,13 @@ These playbooks will upgrade a codecs software to the version in the label utill
 
 ## Notes
 Use the moduel_defaults block at the playbook definition to avoid laying out the full url at ever api call. Example in test-xml.yml
+
+
+
+## Info Needed for comparison
+-[ ] At RoomOs 11.20.2 Bind DN and Bind PW now exist in ldap configuration. Does this exist in lower versions? When introduced?
+-[ ] Do codecs older than 11.17 return the following feilds in /Status/SystemUnit?
+    - Product ID
+    - Software.DisplayName
+    - BroadcastName
+    - Hardware.Module.SerialNumber

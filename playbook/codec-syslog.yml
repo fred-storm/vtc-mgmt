@@ -28,7 +28,7 @@
 
     - name: Create CSV with Headers
       copy:
-        content: "Codec, Server Address, Server Port, External Logging Mode, Protocol, TLS Verify, Audit Logging Mode, Audit Server Address, Audit Server Port
+        content: "Codec, Server Address, Server Port, External Logging Mode, Protocol, TLS Verify, Audit Logging Mode, Audit Server Address, Audit Server Port"
         dest: "{{ dest_file }}"
         force: no
       delegate_to: localhost

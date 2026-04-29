@@ -1,0 +1,180 @@
+---
+- name: Update Codec Syslog Server and Settings
+  hosts: all
+  gather_facts: no
+  connection: local
+  module_defaults: 
+    uri:
+      url: "https://{{inventory_hostname}}/putxml"
+      method: POST
+      user: "{{ codec_user }}"
+      password: "{{ codec_password }}"
+      force_basic_auth: yes
+      validate_certs: no
+      body_format: raw
+      headers: 
+        Content-Type: "text-xml"
+  vars_files:
+    - ~/ansible/vtc-mgmt/vault/vtc_vault.yml
+  
+  vars:
+    codec_user: "{{ user }}"
+    codec_password: "{{ passwd }}"
+    dest_file: ~/ansible/vtc-mgmt/outputs/syslog-output.csv
+    ldap_server: ldap.some.place
+    ldap_port: 636
+    bind_dn: "{{ bind_dn }}" #Need to add these to vault
+    bind_password: "{{ bind_passwd }}" #Need to add these to vault
+
+  tasks:
+
+    - name: Create CSV with Headers
+      copy:
+        content: "Codec, "
+        dest: "{{ dest_file }}"
+        force: no
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Set LDAP Server Address
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <Server>
+                    <Address>"{{ ldap_server }}"</Address>
+                  </Server>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_server_set 
+      delegate_to: localhost
+
+    - name: Set LDAP Port
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <Server>
+                    <Port>{{ ldap_port }}</Port>
+                  </Server>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_port_set 
+      delegate_to: localhost
+
+    - name: Enable LDAP
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <Mode>True</Mode>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_enable_set 
+      delegate_to: localhost
+
+    - name: Set Admin Group
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <Admin>
+                    <Group>Administrators</Group>
+                  </Admin>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_admin_group_set 
+      delegate_to: localhost
+
+    - name: Set Attribute for Username
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <Attribute>sAMAAccountName</Attribute>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_username_attr_set 
+      delegate_to: localhost
+
+    - name: Set Encryption Type
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <Encryption>LDAPS</Encryption>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_encryption_set 
+      delegate_to: localhost
+
+    - name: Set Min TLS Version
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <MinimumTLSVersion>1.2</MinimumTLSVersion>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_tls_version_set 
+      delegate_to: localhost
+    
+    - name: Set Certificate Verify
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <VerifyServerCertificate>Off</VerifyServerCertificate>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_tls_verify_set 
+      delegate_to: localhost
+
+    - name: Set Base DN
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <BaseDN>DC=some,DC=place,DC=com</BaseDN>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_base_dn_set 
+      delegate_to: localhost
+
+    
