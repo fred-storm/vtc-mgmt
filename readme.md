@@ -24,6 +24,11 @@ These playbooks will upgrade a codecs software to the version in the label utill
 - dskp = desk pro
 - dsk = desk
 
+## Syslog Settings
+This playbook is setting all of the required settings to push syslogs and audit logs to external servers.  I am using it to push to Splunk, but there could be other uses for this as well.
+
+## LDAP Settings
+This one sets all of the requirements to use LDAP for administrator log ins.  This playbook specificaly is utilizing LDAPS and sAMAccountName to perform the query.
 
 ## Notes
 Use the moduel_defaults block at the playbook definition to avoid laying out the full url at ever api call. Example in test-xml.yml
