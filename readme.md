@@ -7,7 +7,7 @@ This project exist to make life a bit easier managing a fleet of Cisco Codecs wi
 - Ansible
 - lxlm
 - Apache2
--Community.utility.xml
+- Community.utility.xml
 
 ## Playbooks
 
