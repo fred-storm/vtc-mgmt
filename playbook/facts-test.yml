@@ -1,0 +1,10 @@
+---
+- name: Test Facts Gathering
+  hosts: all
+  gather_facts: yes
+  connection: local
+
+  tasks:
+    - name: Display gathered facts
+      debug:
+        var: ansible_facts
