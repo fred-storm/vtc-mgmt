@@ -3,7 +3,7 @@
 - name: Test Facts Gathering
   hosts: all
   gather_facts: yes
-  connection: local
+  #  connection: local
 
   tasks:
     - name: Display gathered facts
