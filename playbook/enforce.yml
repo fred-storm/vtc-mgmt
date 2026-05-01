@@ -42,6 +42,6 @@
 
     - name: Display Current Wifi Setting
       debug:
-        var: codec_config.NetworkServices.Wifi.Allowed
+        var: codec_config.Configuration.NetworkServices.Wifi.Allowed
 
   
