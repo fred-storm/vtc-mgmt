@@ -5,8 +5,8 @@
   connection: local
   module_defaults: 
     uri:
-      url: "https://{{inventory_hostname}}/getxml?location=/Configuration"
-      method: POST
+      url: "https://{{inventory_hostname}}/getxml?location=/Configuration/"
+      method: GET
       user: "{{ codec_user }}"
       password: "{{ codec_password }}"
       force_basic_auth: yes
