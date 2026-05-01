@@ -40,9 +40,18 @@ There are step upgrades needed when updating codecs from CE 9.x versions. The tw
 If you are coming from behind any of these step upgrades you **MUST** step otherwise the codec will not accept the new file on upload.
 
 ## Info Needed for comparison
-- [ ] At RoomOs 11.20.2 Bind DN and Bind PW now exist in ldap configuration. Does this exist in lower versions? When introduced?
-- [ ] Do codecs older than 11.17 return the following feilds in /Status/SystemUnit?
+- [X] At RoomOs 11.20.2 Bind DN and Bind PW now exist in ldap configuration. Does this exist in lower versions? When introduced?
+- [X] Do codecs older than 11.17 return the following feilds in /Status/SystemUnit?
     - Product ID
     - Software.DisplayName
     - BroadcastName
     - Hardware.Module.SerialNumber
+
+
+## Compliance Tasks
+- [ ] Wifi off
+- [ ] Bluetooth off
+- [ ] Banner exists
+- [ ] Serail Port
+    - On for rooms with controller
+    - Off for desktops and non intergrated room systems

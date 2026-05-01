@@ -177,4 +177,20 @@
       register: ldap_base_dn_set 
       delegate_to: localhost
 
+    - name: Set Bind PW
+      uri:
+        body: |
+            <Configuration>
+              <UserManagement>
+                <LDAP>
+                  <BindPassword>{{ bind_password }}</BindPassword>
+                </LDAP>
+              </UserManagement>
+            </Configuration>
+        status_code: [200, 201]
+        return_content: yes
+      register: ldap_bind_pw_set 
+      delegate_to: localhost
+      ignore_errors: yes
+
     
