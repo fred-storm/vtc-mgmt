@@ -1,0 +1,35 @@
+---
+- name: Enforce Compliance Settings on Codecs
+  hosts: all
+  gather_facts: no
+  connection: local
+  module_defaults: 
+    uri:
+      url: "https://{{inventory_hostname}}/putxml"
+      method: POST
+      user: "{{ codec_user }}"
+      password: "{{ codec_password }}"
+      force_basic_auth: yes
+      validate_certs: no
+      body_format: raw
+      headers: 
+        Content-Type: "text-xml"
+  vars_files:
+    - ~/ansible/vtc-mgmt/vault/vtc_vault.yml
+  
+  vars:
+    codec_user: "{{ user }}"
+    codec_password: "{{ passwd }}"
+    dest_file: ~/ansible/vtc-mgmt/outputs/compliance-output.csv
+    syslog_server: syslog.some.place
+    syslog_port: 5014
+
+  tasks:
+
+    - name: Create CSV with Headers
+      copy:
+        content: "Codec, Address, Wifi, Bluetooth, Serial, Banner"
+        dest: "{{ dest_file }}"
+        force: no
+      delegate_to: localhost
+      run_once: yes
