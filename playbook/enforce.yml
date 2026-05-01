@@ -5,7 +5,7 @@
   connection: local
   module_defaults: 
     uri:
-      url: "https://{{inventory_hostname}}/putxml"
+      url: "https://{{inventory_hostname}}/getxml?location=/Configuration"
       method: POST
       user: "{{ codec_user }}"
       password: "{{ codec_password }}"
@@ -14,6 +14,7 @@
       body_format: raw
       headers: 
         Content-Type: "text-xml"
+      return_content: yes
   vars_files:
     - ~/ansible/vtc-mgmt/vault/vtc_vault.yml
   
@@ -33,3 +34,14 @@
         force: no
       delegate_to: localhost
       run_once: yes
+
+    - name: Get Current Codec Configuration
+      uri:
+      register: codec_config
+      delegate_to: localhost
+
+    - name: Display Current Wifi Setting
+      debug:
+        var: codec_config.NetworkServices.Wifi.Allowed
+
+  
