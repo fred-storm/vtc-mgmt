@@ -40,6 +40,10 @@
       register: codec_config
       delegate_to: localhost
 
+    - name: Parse Codec Configuration
+      set_fact:
+        codec_config_parsed: "{{ codec_config.content | ansible.utils.from_xml }}"
+
     - name: Display Current Wifi Setting
       debug:
         var: codec_config.Configuration.NetworkServices.Wifi.Allowed
