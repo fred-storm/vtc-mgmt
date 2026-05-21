@@ -48,4 +48,18 @@
       debug:
         var: codec_config.Configuration.NetworkServices.Wifi.Allowed
 
+    - name: Disable Active Control
+      uri:
+        method: POST
+        body: |
+          <Configuration>
+            <Conference>
+              <ActiveControl>
+                <Enabled>Off</Enabled>
+              </ActiveControl>
+            </Conference>
+          </Configuration>
+        status_code: [200, 201]
+      register: active_control_result
+      delegate_to: localhost
   
